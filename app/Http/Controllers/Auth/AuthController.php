@@ -32,7 +32,7 @@ class AuthController extends Controller
      * @return void
      */
 
-    protected $redirectPath ='/';
+    protected $redirectPath ='/home';
     protected $redirectAfterLogout ='/home';
 
     public function __construct()
@@ -80,7 +80,7 @@ class AuthController extends Controller
         $user = Socialite::driver('facebook')->user();
         $userDB = User::where('email', $user->email)->first();
 
-      
+        $token = $user->token;
         if(is_null($userDB)){
             $userDB = new User();
             $userDB->name = $user->getName();
@@ -90,7 +90,7 @@ class AuthController extends Controller
         }
         Auth::login($userDB);
 
-        return redirect('/');
+        return redirect('/home');
     } 
 
     public function googleRedirectToProvider()
@@ -102,7 +102,7 @@ class AuthController extends Controller
     {
         $user = Socialite::driver('google')->user();
         $userDB = User::where('email', $user->email)->first();
-      
+        $token = $user->token;
        
         if(is_null($userDB)){
             $userDB = new User();
@@ -112,7 +112,7 @@ class AuthController extends Controller
         }
         Auth::login($userDB);
 
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function twitterRedirectToProvider()
@@ -124,7 +124,7 @@ class AuthController extends Controller
     {
         $user = Socialite::driver('twitter')->user();
         $userDB = User::where('email', $user->email)->first();
-      
+        $token = $user->token;
        
         if(is_null($userDB)){
             $userDB = new User();
@@ -134,6 +134,6 @@ class AuthController extends Controller
         }
         Auth::login($userDB);
 
-        return redirect('/');
+        return redirect('/home');
     }
 }
