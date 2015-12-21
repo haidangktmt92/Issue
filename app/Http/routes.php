@@ -11,24 +11,31 @@
 |
 */
 
-Route::get('/home', function(){
+use App\User;
+
+Route::get('/', function(){
 	return view('home');
 });
 // Route::get('/', function(){
 // 	return view('welcome');
 // });
-Route::get('/',['middleware'=>'auth', function () {
-    return view('welcome');
-}]);
+// Route::get('/',['middleware'=>'auth', function () {
+//     return view('welcome');
+// }]);
 
-Route::get('/{id}', function($id){
-	if (Auth::guest()) {
-		return redirect('/');
-	}else {
-		return $id;	
-	}
-	
+Route::group(['middleware' => 'auth'] , function() {
+    //
+    Route::get('/templates', 'TemplateController@index');
+	Route::post('/template', 'TemplateController@store');
+	Route::delete('/template/{template}', 'TemplateController@destroy');
 });
+
+// Route::get('/templates', 'TemplateController@index');
+// Route::post('/template', 'TemplateController@store');
+// Route::delete('/template/{template}', 'TemplateController@destroy');
+
+
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
