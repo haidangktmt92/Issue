@@ -24,12 +24,15 @@
 						<span class="icon-bar"></span>
 					</button>
 
-					<a class="navbar-brand" href="/">Templates  List</a>
+					<a class="navbar-brand" href="/templates">Templates  List</a>
 				</div>
 
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						&nbsp;
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<a href="/admin/templates">Admin</a>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">

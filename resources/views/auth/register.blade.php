@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
         <div class="col-md-5" style="text-align:center">
-            <h3>Sign Un</h3>
+            <h3>Sign Up</h3>
+             @include('common.errors')
             <form method="POST" action="/auth/register">
                 {!! csrf_field() !!}
 
@@ -47,11 +48,14 @@
             </h4>
             <br>
             <div class="row">
-                <div class="col-md-6">
-                    <a href="/auth/facebook" class="btn btn-lg btn-primary btn-blok">Login With Facebook</a>
+                <div class="col-md-4">
+                    <a href="/auth/facebook" class="btn btn-lg btn-primary btn-blok btn-sm">Login With Facebook</a>
                 </div>
-                <div class="col-md-6">
-                    <a href="/auth/google" class="btn btn-lg btn-info btn-blok">Login With Google</a>
+                <div class="col-md-4">
+                    <a href="/auth/google" class="btn btn-lg btn-info btn-blok btn-sm">Login With Google</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/auth/twitter" class="btn btn-lg btn-info btn-blok btn-sm">Login With Twitter</a>
                 </div>
             </div>
         </div>

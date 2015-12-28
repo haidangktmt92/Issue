@@ -10,27 +10,20 @@ use App\Template;
 use App\User;
 use Auth;
 
-class TemplateController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function __construct()
-    {
-        
-    }
-
-    public function index(Request $request)
+    public function index()
     {
         //
+        $users = User::orderBy('created_at', 'asc')->get();
         $templates = Template::orderBy('created_at', 'asc')->get();
-        return view('templates', [
-            'templates'=>$templates
-            ]);
+        $i = 0;
+        return view('admin.index', ['users'=>$users, 'templates'=>$templates, 'i'=>$i]);
     }
 
     /**
@@ -51,7 +44,7 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $this->validate($request, [
             'name'=> 'required||max:255',
             'description'=> 'required||max:255',
@@ -59,12 +52,10 @@ class TemplateController extends Controller
         $template = Template::create([
             'name'=>$request->name,
             'description'=>$request->description,  
-            'user_id'=>Auth::user()->id,
-            ]);     
-        
-
-        return redirect('/templates');
-        // dd($template);
+            'user_id'=>$request->user,
+            ]);   
+        // dd($request); 
+        return redirect('/admin/templates');
     }
 
     /**
@@ -107,13 +98,11 @@ class TemplateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Template $template, $id)
+    public function destroy($id)
     {
         //
-
         Template::findOrFail($id)->delete();
 
-        return redirect('/templates');
-        
+        return redirect('/admin/templates');
     }
 }

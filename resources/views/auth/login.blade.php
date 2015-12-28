@@ -27,9 +27,12 @@
                         Login
                     </button>
                 </div>  
-                <br>
+              
                 <div>
-                    <a href="">Forgot Your Password</a>
+                    <a href="/password/email">Forgot Your Password</a>
+                </div>
+                <div>
+                    <a href="/auth/register">Register here</a>
                 </div>
             </form>
         </div>

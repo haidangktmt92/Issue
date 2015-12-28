@@ -12,13 +12,14 @@
 */
 
 use App\User;
+use App\Template;
 
 Route::get('/', function(){
 	return view('home');
 });
-// Route::get('/', function(){
-// 	return view('welcome');
-// });
+Route::get('/1', function(){
+	return view('auth.reset');
+});
 // Route::get('/',['middleware'=>'auth', function () {
 //     return view('welcome');
 // }]);
@@ -33,6 +34,16 @@ Route::group(['middleware' => 'auth'] , function() {
 // Route::get('/templates', 'TemplateController@index');
 // Route::post('/template', 'TemplateController@store');
 // Route::delete('/template/{template}', 'TemplateController@destroy');
+
+Route::group(['middleware' => 'admin'] , function() {
+    //
+    Route::get('/admin/templates', 'AdminController@index');
+	Route::post('/admin/template', 'AdminController@store');
+	Route::delete('/admin/template/{template}', 'AdminController@destroy');
+});
+
+
+
 
 
 
@@ -54,3 +65,8 @@ Route::get('auth/google/callback', 'Auth\AuthController@googleHandleProviderCall
 
 Route::get('auth/twitter', 'Auth\AuthController@twitterRedirectToProvider');
 Route::get('auth/twitter/callback', 'Auth\AuthController@twitterHandleProviderCallback');
+
+Route::get('/password/email', 'Auth\PasswordController@getEmail');
+Route::post('/password/email', 'Auth\PasswordController@postEmail');
+Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('/password/reset', 'Auth\PasswordController@postReset');
