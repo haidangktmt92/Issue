@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
 	<div class="container">
-		<form method="POST" action="/password/email">
+		<form method="POST" action="/signin/email">
             {{ csrf_field()}}
             @include('common.errors')
             <table>
             	<tr>
             		<td>
-            			Send password reset link
+            			Send sign in link
             		</td>
             	</tr>
             	<tr>
@@ -21,7 +21,7 @@
             	<tr>
             		<td>
             			<button type="submit" class="btn btn-primary">
-                    Send password reset link
+                    Send sign in link
                 </button>
             		</td>
             	</tr>

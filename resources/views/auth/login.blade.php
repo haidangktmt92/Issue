@@ -29,7 +29,7 @@
                 </div>  
               
                 <div>
-                    <a href="/password/email">Forgot Your Password</a>
+                    <a href="/signin/email">Forgot Your Password</a>
                 </div>
                 <div>
                     <a href="/auth/register">Register here</a>

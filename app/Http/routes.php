@@ -66,7 +66,26 @@ Route::get('auth/google/callback', 'Auth\AuthController@googleHandleProviderCall
 Route::get('auth/twitter', 'Auth\AuthController@twitterRedirectToProvider');
 Route::get('auth/twitter/callback', 'Auth\AuthController@twitterHandleProviderCallback');
 
-Route::get('/password/email', 'Auth\PasswordController@getEmail');
-Route::post('/password/email', 'Auth\PasswordController@postEmail');
-Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('/password/reset', 'Auth\PasswordController@postReset');
+// Route::get('/password/email', 'Auth\PasswordController@getEmail');
+// Route::post('/password/email', 'Auth\PasswordController@postEmail');
+// Route::get('/password/reset/{token}', 'Auth\PasswordController@getReset');
+// Route::post('/password/reset', 'Auth\PasswordController@postReset');
+Route::get('/signin/email', 'LoginController@getEmail');
+Route::post('/signin/email', 'LoginController@postEmail');
+Route::get('/signin/token={token}', 'LoginController@getLogin');
+// Route::get('/signin/token={token}', function($token){
+// 	echo $token;
+// });
+
+
+
+// Route::get('/password/reset/{token}', function($token){
+// 	if (is_null($token)) {
+//             throw new NotFoundHttpException;
+//         }
+// 	$user = DB::table('password_resets')->where('token', $token)->first();
+// 	$userDB = User::where('email', $user->email)->first();
+// 	// dd($user);
+// 	Auth::login($userDB);
+// 	return redirect('/');
+// });
